@@ -38,11 +38,13 @@
         </style>
     </head>
     <body>
-            <?php foreach($artikel as $row): ?>
-                <h2><?php echo $row['categorie'] ?></h2>
-                <h1><?php echo $row['Header'] ?></h1>
-                <p><?php echo $row['Content'] ?> </p>
-                <em>Auteur: <?php echo $row['Auteur'] ?></em>
+            <?php foreach($artikel as $article): ?>
+            <article>
+                <h2><?php echo $article['categorie'] ?></h2>
+                <h1><?php echo $article['Header'] ?></h1>
+                <p><?php echo $article['Content'] ?> </p>
+                <footer>Auteur: <?php echo $article['Auteur'] ?></footer>
+            </article>
             <?php endforeach;?>
         <!--<pre> <?php// echo print_r($artikel); ?></pre>-->
     </body>
