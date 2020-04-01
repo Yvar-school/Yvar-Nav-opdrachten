@@ -59,17 +59,22 @@
             <br>
         <!--<pre> <?php// echo print_r($artikel); ?></pre>-->
         <form method="post" action="create.php">
-        <input name="title" placeholder="title"></input><br>
-        <input name="Author" placeholder="Author"></input><br>
-        <select name="catoID">
-        <?php foreach($cato as $category): ?>
-        <option value='<?php echo $category["id"]; ?>'> 
-            <?php echo $category["categorie"]; ?><br>
-        </options>
-        <?php endforeach; ?>
-        </select>
-       <br><textarea placeholder="Content" name="content"></textarea><br>
-       <button type="submit">KLIK!</button>
+            <input name="title" placeholder="title" required>
+                <br>
+            <input name="Author" placeholder="Author" required>
+                <br>
+
+            <select name="catoID">
+            <?php foreach($cato as $category): ?>
+                <option value='<?php echo $category["id"]; ?>'> 
+                    <?php echo $category["categorie"]; ?><br>
+                </options>
+            <?php endforeach; ?>
+            </select>
+                <br>
+            <textarea placeholder="Content" name="content" required></textarea>
+                <br>
+            <button type="submit">KLIK!</button>
         </form>
     </body>
 </html>
