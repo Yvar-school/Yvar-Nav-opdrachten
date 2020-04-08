@@ -1,31 +1,5 @@
 <?php 
-        try{
-        $connection = new PDO('mysql:host=Localhost;dbname=article', 'root', '');
-        }
-        catch( PDOException $e )
-        {
-            die( $e->getMessage() );
-        }
-        $test = $connection->query('select 
-            artikel.id,
-            artikel.catoID,
-            categorien.categorie,
-            artikel.Header,
-            artikel.Content,
-            artikel.Auteur
-            from artikel
-            left join categorien 
-            on categorien.id = artikel.catoID
-        ');
-        $artikel = $test->fetchAll();
-
-
-        $categorieStatement = $connection->query('
-            select id, categorie
-            from categorien
-        ');
-
-        $cato = $categorieStatement->fetchAll(PDO::FETCH_ASSOC);
+    include 'connection.php';
     ?>
 <DOCTYPE html>   
 <html>
@@ -46,15 +20,28 @@
                 float: left;    
             }
         </style>
+        <script>
+            function get(id){
+                console.log(id);
+                window.location.href = "./view.php?id="+id;
+            }
+        </script>
     </head>
     <body>
             <?php foreach($artikel as $article): ?>
             <article>
-                <h2><?php echo $article['categorie'] ?></h2>
                 <h1><?php echo $article['Header'] ?></h1>
+                <h2><?php echo $article['categorie'] ?></h2>
                 <p><?php echo $article['Content'] ?> </p>
-                <footer>Auteur: <?php echo $article['Auteur'] ?></footer>
+                <footer>
+                    Auteur: <?php echo $article['Auteur'] ?><br>
+                    <button onclick='get(<?php echo $article['id']?>)'>View</button>
+                    <form action="delete.php" method="post">
+                        <button onclick='delete()' ></button>
+                    </form>
+                </footer>
             </article>
+
             <?php endforeach;?>
             <br>
         <!--<pre> <?php// echo print_r($artikel); ?></pre>-->
