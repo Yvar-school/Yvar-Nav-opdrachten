@@ -6,7 +6,7 @@
         {
             die( $e->getMessage() );
         }
-        $test = $connection->query('select 
+        $PDO = $connection->query('select 
             artikel.id,
             artikel.catoID,
             categorien.categorie,
@@ -17,7 +17,7 @@
             left join categorien 
             on categorien.id = artikel.catoID
         ');
-        $artikel = $test->fetchAll();
+        $artikel = $PDO->fetchAll();
 
 
         $categorieStatement = $connection->query('

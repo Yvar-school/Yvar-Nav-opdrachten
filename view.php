@@ -17,13 +17,19 @@
     
 ?>
 <?php foreach($views as $article): ?>
-            <article>
-                <h1><?php echo $article['Header'] ?></h1>
-                <h2><?php echo $article['categorie'] ?></h2>
-                <p><?php echo $article['Content'] ?> </p>
-                <footer>
-                    Auteur: <?php echo $article['Auteur'] ?><br>
-                    <button onclick='get(<?php echo $article['id']?>)'>View</button>
-                </footer>
-            </article>
+            <form action="bewerken.php" method="post">
+               <input type="hidden" name="id" value="<?php echo $article['id'] ?>">
+                <input type="text" name="Header" value="<?php echo $article['Header'] ?>"><br>
+                <select name="catoID">
+                    <?php foreach($cato as $category): ?>
+                        <option value='<?php echo $category["id"]; ?>'> 
+                            <?php echo $category["categorie"]; ?>
+                        </options>
+                    <?php endforeach; ?>
+                    </select><br>
+                    
+                <input type="text" name="Content" value="<?php echo $article['Content'] ?>"><br>
+                <input type="text" name="Auteur" value="<?php echo $article['Auteur'] ?>"><br>
+                <button type="submit">update</button>
+            </form>
             <?php endforeach;?>

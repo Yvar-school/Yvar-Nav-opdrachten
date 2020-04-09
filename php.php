@@ -24,7 +24,11 @@
             function get(id){
                 console.log(id);
                 window.location.href = "./view.php?id="+id;
-            }
+            };
+
+            function del(){
+                window.location.href = "./delete.php/";
+            };
         </script>
     </head>
     <body>
@@ -37,7 +41,8 @@
                     Auteur: <?php echo $article['Auteur'] ?><br>
                     <button onclick='get(<?php echo $article['id']?>)'>View</button>
                     <form action="delete.php" method="post">
-                        <button onclick='delete()' ></button>
+                        <input type="hidden" name="id" value="<?php echo $article['id']?>">
+                        <button onclick='del()' >Delete</button>
                     </form>
                 </footer>
             </article>
